@@ -1,1 +1,6 @@
-# PROJECT-3
+## PROJECT-3: MERN STACK IMPLEMENTATION
+
+
+***STEP 1: BACKEND COMFIGURATION***
+
+- I updated Ubuntu using 
