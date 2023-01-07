@@ -15,6 +15,7 @@
 
 <img width="439" alt="NODE INSTALLATION CONFIRMED" src="https://user-images.githubusercontent.com/115954100/211135272-0893c905-c28a-49a9-a422-27ae433801e4.png">
 
+
 - **Setting up the application code**
 
 - I created a new directory for your To-Do project using `mkdir Todo`.
@@ -31,4 +32,19 @@
 
 <img width="576" alt="INITIALISED THE PROJECT AND PACKAGE JSON FILE CREATED" src="https://user-images.githubusercontent.com/115954100/211135233-2d0c68e6-6fe3-4acb-b7b8-61f759957e5f.png">
 
-- I ran the command **ls** to confirm that you have **package.json** file created.
+- I ran the command `ls` to confirm that you have **package.json** file created.
+
+
+- **ESPRESSJS INSTALLATION**
+
+- Express is a framework for Node.js, therefore a lot of things developers would have programmed is already taken care of out of the box. Therefore it simplifies development, and abstracts a lot of low level details. For example, Express helps to define routes of your application based on HTTP methods and URLs.
+
+- I installed *EXPRESS* using the command code `npm install express`
+
+- create a file **index.js** with the command code `touch index.js`
+
+- I ran `ls` to confirm that your index.js file is successfully created
+
+- Immediately after that, I installed the **dotenv module** using the command code `npm install dotenv` 
+
+- I Opened the **index.js fil**e with the command below
