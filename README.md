@@ -146,6 +146,8 @@ module.exports = router;
 
 - I created a new folder *models*, using the command code `mkdir models`.
 
+<img width="402" alt="Mongoose- todo" src="https://user-images.githubusercontent.com/115954100/211204410-8815293f-afd0-4def-8e78-22886c4ff8e8.png">
+
 - I changed directory into the newly created ‘models’ folder using the code `cd models`.
 
 - Inside the models folder, I created a file and name it *todo.js* using the code `touch todo.js`.
@@ -172,6 +174,8 @@ const Todo = mongoose.model('todo', TodoSchema);
 module.exports = Todo;
 ```
 - Now I updated my *routes* from the file *api.js* in ‘routes’ directory to make use of the new model.
+
+<img width="295" alt="Updated routes from api js file" src="https://user-images.githubusercontent.com/115954100/211204462-b650e7b5-9a21-4660-a3fe-fb00aec1e195.png">
 
 - In Routes directory, I opened *api.js* with **vim api.js**, I deleted the code inside with *:%d* command and pasted the code below into it then saved and exited.
 
@@ -208,3 +212,4 @@ Todo.findOneAndDelete({"_id": req.params.id})
 
 module.exports = router;
 ```
+
