@@ -216,4 +216,99 @@ module.exports = router;
 
 - **MONGODB DATABASE**
 
-- I need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, I signed up for a shared clusters free account, which is ideal for my use case. (https://www.mongodb.com/contributor-guide-index.md). Sign up here. Follow the sign up process, select AWS as the cloud provider, and choose a region near you.
+- I need a database where we will store our data. For this we will make use of mLab. mLab provides MongoDB database as a service solution (DBaaS), so to make life easy, I signed up for a shared clusters free account, which is ideal for my use case. [Mongo](https://www.mongodb.com/contributor-guide-index.md). I followed the sign up process, I selected AWS as the cloud provider, and choosed a region near me. 
+
+- I completed a get started checklist as shown on the image below
+
+<img width="1667" alt="MLab-dashboard 1" src="https://user-images.githubusercontent.com/115954100/211211958-a45f2227-834e-4bcb-ad34-30e351118bf4.png">
+
+- I allowed access to the MongoDB database from anywhere (Not secure, but it is ideal for testing)
+
+- **NOTE** In the image below, I changed the time of deleting the entry from 6 Hours to 1 Week
+
+<img width="1537" alt="MogoDB-Network-Access 2" src="https://user-images.githubusercontent.com/115954100/211212252-f9ca8398-6539-466b-b352-013eb3b74d73.png">
+
+- I created a MongoDB database and collection inside mLab
+
+<img width="1235" alt="Mongo-create-DB-1 3" src="https://user-images.githubusercontent.com/115954100/211212334-3c1deb71-b19d-4aba-9ed0-8f325b1e0cd5.png">
+
+<img width="1585" alt="Mongo-create-DB-2 4" src="https://user-images.githubusercontent.com/115954100/211212368-30d204cf-6e3c-4db7-a603-2d771ad6d798.png">
+
+- In the **index.js file**, 1 specified **process.env** to access environment variables, but I have not yet created this file. So I need to do that now.
+
+- I created a file in my *Todo directory* and name it **.env** using the code `touch .env` then opened the file `vi .env`
+
+- I added the connection string to access the database in it, just as below:
+
+- `DB = 'mongodb+srv://<username>:<password>@<network-address>/<dbname>?retryWrites=true&w=majority'`
+
+- I ensured to update <username>, <password>, <network-address> and <database> according to your setup
+
+- Here is how to get your connection string
+
+<img width="1276" alt="Mongo-connection string1 5" src="https://user-images.githubusercontent.com/115954100/211213321-9bb07c73-5a45-4f99-a31d-3c32d1ee4957.png">
+  
+<img width="1539" alt="Mongo-connect string2 6" src="https://user-images.githubusercontent.com/115954100/211213331-d55d601c-ac07-4f7b-a827-ec2602ba8b21.png">
+
+- I updated the **index.js** to reflect the use of *.env* so that *Node.js* can connect to the database.
+  
+- I Simply deleted the existing content in the file, and updated it with the entire code below.
+
+- To do that using vim, follow below steps
+
+- I opened the file with `vim index.js`
+- I pressed esc
+- I typed :
+- I typed %d
+- I hit ‘Enter’
+- The entire content will be deleted, then,
+
+- I pressed 'I' to enter the insert mode in vim
+- Now, pasted the entire code below in the file.  
+
+```
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const routes = require('./routes/api');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+//connect to the database
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log(`Database connected successfully`))
+.catch(err => console.log(err));
+
+//since mongoose promise is depreciated, we overide it with node's promise
+mongoose.Promise = global.Promise;
+
+app.use((req, res, next) => {
+res.header("Access-Control-Allow-Origin", "\*");
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+next();
+});
+
+app.use(bodyParser.json());
+
+app.use('/api', routes);
+
+app.use((err, req, res, next) => {
+console.log(err);
+next();
+});
+
+app.listen(port, () => {
+console.log(`Server running on port ${port}`)
+});  
+```
+
+- Using environment variables to store information is considered more secure and best practice to separate configuration and secret data from the application, instead of writing connection strings directly inside the **index.js** application file.
+  
+- I started the server using the command `node index.js`  
+  
+  
+  
