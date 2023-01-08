@@ -345,10 +345,16 @@ console.log(`Server running on port ${port}`)
 - Display a list of tasks – HTTP GET request
 - Add a new task to the list – HTTP POST request
 - Delete an existing task from the list – HTTP DELETE request
+  
+- **POST**
  
 <img width="957" alt="POSTMAN POST REQUEST" src="https://user-images.githubusercontent.com/115954100/211220145-da58af9e-139c-487d-8295-9904f92141d7.png">
-    
+  
+- **GET**  
+  
 <img width="960" alt="POSTMAN GET REQUEST" src="https://user-images.githubusercontent.com/115954100/211220170-10ff5d7a-ee88-4b29-b4d8-c5a548ab5371.png">
+  
+- **DELETE**
   
 <img width="960" alt="HOW TO DELETE ON POSTMAN" src="https://user-images.githubusercontent.com/115954100/211220274-2e6a93d7-b1ba-4a5e-a36a-64d419640cdd.png">
   
