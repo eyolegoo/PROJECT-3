@@ -322,4 +322,38 @@ console.log(`Server running on port ${port}`)
   
 - I clicked [Install Postman](https://www.postman.com/downloads/) to download and install postman on your machine.
   
-- Click [HERE](https://www.youtube.com/watch?v=FjgYtQK_zLE) to learn how [perform CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operartions on Postman
+- Click [HERE](https://www.youtube.com/watch?v=FjgYtQK_zLE) to learn how [perform CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operartions on Postman.
+  
+- I tested all the API endpoints and make sure they are working. For the endpoints that require body, you should send **JSON** back with the necessary fields since it’s what we setup in our code.
+  
+- I opened my Postman, created a POST request to the API `http://<PublicIP-or-PublicDNS>:5000/api/todos`. This request sends a new task to our To-Do list so the application could store it in the database.
+
+- **Note:** make sure your set header key *Content-Type* as *application/json*
+  
+![postman_header 7](https://user-images.githubusercontent.com/115954100/211219235-ca3201ab-0a1e-455e-945e-f0fb592c3925.png)
+
+- I checked the image below:
+  
+![post-request](https://user-images.githubusercontent.com/115954100/211219350-93e7ce99-3175-43c7-8675-b8a0be81d7cb.png)
+
+- I created a GET request to my API on `http://<PublicIP-or-PublicDNS>:5000/api/todos`. This request retrieves all existing records from out To-do application (backend requests these records from the database and sends it to us back as a response to GET request).
+  
+![get-request](https://user-images.githubusercontent.com/115954100/211219565-c669085e-140e-4649-99b8-48e8fb154021.png)
+  
+- Now I have tested backend part of our To-Do application and have made sure that it supports all three operations I wanted:
+  
+- Display a list of tasks – HTTP GET request
+- Add a new task to the list – HTTP POST request
+- Delete an existing task from the list – HTTP DELETE request
+ 
+<img width="957" alt="POSTMAN POST REQUEST" src="https://user-images.githubusercontent.com/115954100/211220145-da58af9e-139c-487d-8295-9904f92141d7.png">
+    
+<img width="960" alt="POSTMAN GET REQUEST" src="https://user-images.githubusercontent.com/115954100/211220170-10ff5d7a-ee88-4b29-b4d8-c5a548ab5371.png">
+  
+<img width="960" alt="HOW TO DELETE ON POSTMAN" src="https://user-images.githubusercontent.com/115954100/211220274-2e6a93d7-b1ba-4a5e-a36a-64d419640cdd.png">
+  
+<img width="960" alt="DELETE STEP" src="https://user-images.githubusercontent.com/115954100/211220302-409c5a55-92d2-4fc0-8516-982c2965eda2.png">
+
+<img width="958" alt="ID DELETED" src="https://user-images.githubusercontent.com/115954100/211220343-d5e9efef-a63b-4a0e-ad4b-2f3e92a8248e.png">
+
+- I have successfully created my Backend, now let's create the Frontend.
