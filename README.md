@@ -310,5 +310,16 @@ console.log(`Server running on port ${port}`)
   
 - I started the server using the command `node index.js`  
   
+<img width="947" alt="Database connected successfully" src="https://user-images.githubusercontent.com/115954100/211215517-4a8e6cd2-31a2-4e3f-ba67-aae75fbfe573.png">
   
+- You shall see a message **‘Database connected successfully’**, if so – we have our backend configured. Now we are going to test it.
+
+- **Testing Backend Code without Frontend using RESTful API**
   
+- So far I have written backend part of my To-Do application, and configured a database, but I do not have a frontend UI yet. I need **ReactJS** code to achieve that. But during development, I will need a way to test the code using *RESTfulL API*. Therefore, I will need to make use of some API development client to test my code.
+
+- In this project, I used [Postman](https://www.postman.com) to test our API. 
+  
+- I clicked [Install Postman](https://www.postman.com/downloads/) to download and install postman on your machine.
+  
+- Click [HERE](https://www.youtube.com/watch?v=FjgYtQK_zLE) to learn how [perform CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operartions on Postman
