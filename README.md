@@ -363,3 +363,44 @@ console.log(`Server running on port ${port}`)
 <img width="958" alt="ID DELETED" src="https://user-images.githubusercontent.com/115954100/211220343-d5e9efef-a63b-4a0e-ad4b-2f3e92a8248e.png">
 
 - I have successfully created my Backend, now let's create the Frontend.
+  
+ 
+ ***STEP 2: FRONTEND CREATION***
+  
+- Since I'm done with the functionality I need from the backend and API, it is time to create a user interface for a Web client (browser) to interact with the application via *API*. To start out with the frontend of the **To-do app**, I used the **create-react-app** command to scaffold our app
+
+- In the same root directory as my backend code, which is the **Todo directory**, I ran: `npx create-react-app client`.
+  
+- This created a new folder in my **Todo directory** called **client**, where all the **react code** will be added.
+  
+- <img width="960" alt="client install" src="https://user-images.githubusercontent.com/115954100/211305129-a35e3c84-5f4b-475e-a9da-513058b650b5.png">
+
+- **Running a React App**
+  
+- Before testing the **react app**, there are some dependencies that need to be installed.
+  
+- I installed [concurrently](https://https://www.npmjs.com/package/concurrently). It is used to run more than one command simultaneously from the same terminal window. Using `npm install concurrently --save-dev`.
+  
+- I installed nodemon [nodemon](https://www.npmjs.com/package/nodemon). It is used to run and monitor the server. If there is any change in the server code, nodemon will restart it automatically and load the new changes. Using `npm install nodemon --save-dev`.
+  
+- In **Todo folder** open the **package.json** file.  I changed the highlighted part of the below screenshot and replaced with the code below.
+
+```
+"scripts": {
+"start": "node index.js",
+"start-watch": "nodemon index.js",
+"dev": "concurrently \"npm run start-watch\" \"cd client && npm start\""
+},
+```  
+![script](https://user-images.githubusercontent.com/115954100/211307934-d502be8d-f865-404d-a3ad-d58f2ce42569.png)
+
+- Configure Proxy in **package.json**
+  
+- Changed directory to ‘client’ `cd client`.
+  
+- Opened the **package.json** file `vi package.json`
+  
+- i added the key value pair in the **package.json** file **"proxy": "http://localhost:5000"**.
+The whole purpose of adding the proxy configuration in number 3 above is to make it possible to access the application directly from the browser by simply calling the server url like **http://localhost:5000** rather than always including the entire path like **http://localhost:5000/api/todos**  
+  
+-   
