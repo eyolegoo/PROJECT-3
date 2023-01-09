@@ -373,7 +373,7 @@ console.log(`Server running on port ${port}`)
   
 - This created a new folder in my **Todo directory** called **client**, where all the **react code** will be added.
   
-- <img width="960" alt="client install" src="https://user-images.githubusercontent.com/115954100/211305129-a35e3c84-5f4b-475e-a9da-513058b650b5.png">
+<img width="960" alt="client install" src="https://user-images.githubusercontent.com/115954100/211305129-a35e3c84-5f4b-475e-a9da-513058b650b5.png">
 
 - **Running a React App**
   
@@ -407,7 +407,7 @@ The whole purpose of adding the proxy configuration in number 3 above is to make
 
 - I ensured I'm in **Todo** directory, then I ran `npm run dev`.
   
- <img width="953" alt="npm run dev" src="https://user-images.githubusercontent.com/115954100/211346741-cddb216e-8bda-4be6-9a8e-29852605cfd3.png">
+<img width="953" alt="npm run dev" src="https://user-images.githubusercontent.com/115954100/211346741-cddb216e-8bda-4be6-9a8e-29852605cfd3.png">
 
 - My app opened and started running on **localhost:3000**
   
@@ -480,4 +480,258 @@ export default Input
   
 - I moved to the src folder using `cd src`, then moved to clients `cd clients`
   
-- In here, I installed axios using `npm install axios` 
+- In here, I installed axios using `npm install axios`.
+  
+- I went to ‘components’ directory using `cd src/components`
+  
+- After that I opened the **ListTodo.js** using `vi ListTodo.js`
+  
+- In the **ListTodo.js** I copied and pasted the following code.
+  
+```
+import React from 'react';
+
+const ListTodo = ({ todos, deleteTodo }) => {
+
+return (
+<ul>
+{
+todos &&
+todos.length > 0 ?
+(
+todos.map(todo => {
+return (
+<li key={todo._id} onClick={() => deleteTodo(todo._id)}>{todo.action}</li>
+)
+})
+)
+:
+(
+<li>No todo(s) left</li>
+)
+}
+</ul>
+)
+}
+
+export default ListTodo  
+```  
+
+- Then in my *Todo.js* file I entered the following code
+  
+```  
+import React, {Component} from 'react';
+import axios from 'axios';
+
+import Input from './Input';
+import ListTodo from './ListTodo';
+
+class Todo extends Component {
+
+state = {
+todos: []
+}
+
+componentDidMount(){
+this.getTodos();
+}
+
+getTodos = () => {
+axios.get('/api/todos')
+.then(res => {
+if(res.data){
+this.setState({
+todos: res.data
+})
+}
+})
+.catch(err => console.log(err))
+}
+
+deleteTodo = (id) => {
+
+    axios.delete(`/api/todos/${id}`)
+      .then(res => {
+        if(res.data){
+          this.getTodos()
+        }
+      })
+      .catch(err => console.log(err))
+
+}
+
+render() {
+let { todos } = this.state;
+
+    return(
+      <div>
+        <h1>My Todo(s)</h1>
+        <Input getTodos={this.getTodos}/>
+        <ListTodo todos={todos} deleteTodo={this.deleteTodo}/>
+      </div>
+    )
+
+}
+}
+
+export default Todo;
+```
+
+- I made a little adjustment to the **react code**. I deleted the logo and adjusted the **App.js** to look like this.
+  
+- I moved to the src folder using `cd src`
+  
+- In the **src** folder, I ran the code `vi App.js` to open the **Api.js** file
+  
+- Then I copied and pasted the below code into the **Api.js** file
+  
+```
+import React from 'react';
+
+import Todo from './components/Todo';
+import './App.css';
+
+const App = () => {
+return (
+<div className="App">
+<Todo />
+</div>
+);
+}
+
+export default App;  
+```  
+
+- After exiting, I went back to **src* folder `cd src`
+  
+- In the **src** directory I opened the **App.css** using `cd App.css`
+  
+- Then I copied and pasted the below code into the **App.css** file
+  
+```  
+.App {
+text-align: center;
+font-size: calc(10px + 2vmin);
+width: 60%;
+margin-left: auto;
+margin-right: auto;
+}
+
+input {
+height: 40px;
+width: 50%;
+border: none;
+border-bottom: 2px #101113 solid;
+background: none;
+font-size: 1.5rem;
+color: #787a80;
+}
+
+input:focus {
+outline: none;
+}
+
+button {
+width: 25%;
+height: 45px;
+border: none;
+margin-left: 10px;
+font-size: 25px;
+background: #101113;
+border-radius: 5px;
+color: #787a80;
+cursor: pointer;
+}
+
+button:focus {
+outline: none;
+}
+
+ul {
+list-style: none;
+text-align: left;
+padding: 15px;
+background: #171a1f;
+border-radius: 5px;
+}
+
+li {
+padding: 15px;
+font-size: 1.5rem;
+margin-bottom: 15px;
+background: #282c34;
+border-radius: 5px;
+overflow-wrap: break-word;
+cursor: pointer;
+}
+
+@media only screen and (min-width: 300px) {
+.App {
+width: 80%;
+}
+
+input {
+width: 100%
+}
+
+button {
+width: 100%;
+margin-top: 15px;
+margin-left: 0;
+}
+}
+
+@media only screen and (min-width: 640px) {
+.App {
+width: 60%;
+}
+
+input {
+width: 50%;
+}
+
+button {
+width: 30%;
+margin-left: 10px;
+margin-top: 0;
+}
+}  
+```  
+
+- I exited.
+  
+- In the **src** directory I opened the **index.css** using `vi index.css`. I copied and pasted the below code in the **index.css** file
+  
+```
+body {
+margin: 0;
+padding: 0;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+box-sizing: border-box;
+background-color: #282c34;
+color: #787a80;
+}
+
+code {
+font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+monospace;
+}  
+```  
+  
+- I went back to the **Todo** directory `cd ../..`
+  
+- In Todo directory, I ran the code `npm run dev``
+  
+<img width="953" alt="npm run dev" src="https://user-images.githubusercontent.com/115954100/211396148-6cd340a5-c651-402f-b305-a5cf4df9044e.png">
+
+- Assuming no errors when saving all these files, the *To-Do app* should be ready and fully functional with the functionality discussed earlier: creating a task, deleting a task and viewing all your tasks.
+  
+- Also testing the local host `localhost:3000` on url should give the below, showing a successful programing.
+  
+<img width="924" alt="Accessing URL port 3000" src="https://user-images.githubusercontent.com/115954100/211397341-5217c8e1-fdc3-44a3-8d7b-0a6d58e7fc7d.png">
+
+- In this Project #3, I created a simple **To-Do** and deployed it to **MERN stack**. I wrote a frontend application using **React.js** that communicates with a backend application written using **Expressjs**. I also created a **Mongodb backend** for storing tasks in a database.  
