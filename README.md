@@ -400,7 +400,84 @@ console.log(`Server running on port ${port}`)
   
 - Opened the **package.json** file `vi package.json`
   
-- i added the key value pair in the **package.json** file **"proxy": "http://localhost:5000"**.
+- I added the key value pair in the **package.json** file **"proxy": "http://localhost:5000"**.
 The whole purpose of adding the proxy configuration in number 3 above is to make it possible to access the application directly from the browser by simply calling the server url like **http://localhost:5000** rather than always including the entire path like **http://localhost:5000/api/todos**  
   
--   
+<img width="486" alt="Client package Json" src="https://user-images.githubusercontent.com/115954100/211344837-010c3a7e-b37d-4fe5-8029-a64d814c55fa.png">
+
+- I ensured I'm in **Todo** directory, then I ran `npm run dev`.
+  
+ <img width="953" alt="npm run dev" src="https://user-images.githubusercontent.com/115954100/211346741-cddb216e-8bda-4be6-9a8e-29852605cfd3.png">
+
+- My app opened and started running on **localhost:3000**
+  
+- **Important note**: In order to be able to access the application from the Internet I opened *TCP port 3000 on EC2* by adding a new Security Group rule.
+  
+- **Creating React Components**
+  
+- One of the advantages of react is that it makes use of components, which are reusable and also makes code modular. For our Todo app, there will be two stateful components and one stateless component.
+  
+- From your Todo directory I ran `cd client`
+  
+- move to the src directory using `cd src`
+  
+- Inside the **src folder** I created another folder called **components** using `mkdir components`, then moved into its directory using `cd components`
+  
+- Inside ‘components’ directory, I created three files **Input.js, ListTodo.js** and **Todo.js**, using `touch Input.js ListTodo.js Todo.js`
+  
+- Using `vi Input.js` I opened Input.js file
+  
+- I copied and pasted the following into the open Input.js file.
+  
+```
+import React, { Component } from 'react';
+import axios from 'axios';
+
+class Input extends Component {
+
+state = {
+action: ""
+}
+
+addTodo = () => {
+const task = {action: this.state.action}
+
+    if(task.action && task.action.length > 0){
+      axios.post('/api/todos', task)
+        .then(res => {
+          if(res.data){
+            this.props.getTodos();
+            this.setState({action: ""})
+          }
+        })
+        .catch(err => console.log(err))
+    }else {
+      console.log('input field required')
+    }
+
+}
+
+handleChange = (e) => {
+this.setState({
+action: e.target.value
+})
+}
+
+render() {
+let { action } = this.state;
+return (
+<div>
+<input type="text" onChange={this.handleChange} value={action} />
+<button onClick={this.addTodo}>add todo</button>
+</div>
+)
+}
+}
+
+export default Input  
+```  
+- To make use of [Axios](https://github.com/axios/axios), which is a Promise based HTTP client for the browser and node.js, I to cd into my **client** from my terminal and run yarn add axios or npm install axios. 
+  
+- I moved to the src folder using `cd src`, then moved to clients `cd clients`
+  
+- In here, I installed axios using `npm install axios` 
